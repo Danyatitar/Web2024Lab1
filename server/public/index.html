@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat App with Rooms, Usernames, and User Lists</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar with Room List and User List -->
+      <div class="sidebar">
+        <ul id="room-list">
+          <!-- Dynamic list of rooms -->
+        </ul>
+        <div class="user-list-container">
+          <h3>Users in Room</h3>
+          <ul id="user-list">
+            <!-- Dynamic list of users in the selected room -->
+          </ul>
+        </div>
+      </div>
+
+      <div class="main">
+        <!-- Room connection form -->
+        <div class="room-container">
+          <form id="room-form">
+            <input
+              class="name-input"
+              placeholder="Enter your name..."
+              autocomplete="off"
+              required
+            />
+            <input
+              class="room-input"
+              placeholder="Enter room name..."
+              autocomplete="off"
+              required
+            />
+            <button class="join-room-btn">Join Room</button>
+          </form>
+        </div>
+
+        <!-- Chat interface (initially hidden) -->
+        <div class="chat-container" style="display: none">
+          <ul class="messages" id="messages"></ul>
+          <form class="chat-form" action="">
+            <input
+              class="chat-input"
+              autocomplete="off"
+              placeholder="Type a message..."
+              required
+            />
+            <button class="chat-send-btn">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
