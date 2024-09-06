@@ -1,4 +1,3 @@
-// server.js
 const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
@@ -7,12 +6,10 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-const rooms = {}; // Track rooms and their users
+const rooms = {};
 
-// Serve static files from 'public' directory
 app.use(express.static("public"));
 
-// Handle WebSocket connections
 io.on("connection", (socket) => {
   console.log("A user connected");
 
@@ -26,12 +23,11 @@ io.on("connection", (socket) => {
     console.log(`${name} joined room: ${room}`);
 
     io.to(room).emit("notification", { name, room });
-    io.to(room).emit("user list", { room, users: rooms[room] }); // Send updated user list to room
+    io.to(room).emit("user list", { room, users: rooms[room] });
   });
 
-  // Handle chat messages for the specific room
   socket.on("chat message", ({ room, name, msg }) => {
-    io.to(room).emit("chat message", { room, name, msg }); // Broadcast message with user name to the room
+    io.to(room).emit("chat message", { room, name, msg });
   });
 
   socket.on("disconnect", () => {

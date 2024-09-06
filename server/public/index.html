@@ -3,26 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chat App with Rooms, Usernames, and User Lists</title>
+    <title>Chat</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container">
-      <!-- Sidebar with Room List and User List -->
       <div class="sidebar">
-        <ul id="room-list">
-          <!-- Dynamic list of rooms -->
-        </ul>
+        <ul id="room-list"></ul>
         <div class="user-list-container">
           <h3>Users in Room</h3>
-          <ul id="user-list">
-            <!-- Dynamic list of users in the selected room -->
-          </ul>
+          <ul id="user-list"></ul>
         </div>
       </div>
 
       <div class="main">
-        <!-- Room connection form -->
         <div class="room-container">
           <form id="room-form">
             <input
@@ -41,7 +35,6 @@
           </form>
         </div>
 
-        <!-- Chat interface (initially hidden) -->
         <div class="chat-container" style="display: none">
           <ul class="messages" id="messages"></ul>
           <form class="chat-form" action="">

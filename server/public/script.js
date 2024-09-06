@@ -1,7 +1,5 @@
-// /public/script.js
-const socket = io(); // Connect to WebSocket
+const socket = io();
 
-// Elements
 const roomForm = document.getElementById("room-form");
 const nameInput = document.querySelector(".name-input");
 const roomInput = document.querySelector(".room-input");
@@ -49,32 +47,29 @@ form.addEventListener("submit", (e) => {
   }
 });
 
-// Listen for incoming messages
 socket.on("chat message", (data) => {
   if (currentRooms[data.room]) {
-    currentRooms[data.room].push(data); // Store message in room-specific array
+    currentRooms[data.room].push(data);
     if (data.room === selectedRoom) {
-      displayMessagesForRoom(data.room); // Display message if it's the active room
+      displayMessagesForRoom(data.room);
     }
   }
 });
 
-// Listen for room notifications (e.g., users joining)
 socket.on("notification", (data) => {
   if (currentRooms[data.room]) {
     currentRooms[data.room].push({
       notification: `${data.name} joined ${data.room}`,
-    }); // Add notification to room messages
+    });
     if (data.room === selectedRoom) {
-      displayMessagesForRoom(data.room); // Display notification if it's the active room
+      displayMessagesForRoom(data.room);
     }
   }
 });
 
-// Update user list for the room
 socket.on("user list", ({ room, users }) => {
   if (room === selectedRoom) {
-    updateUserList(users); // Update user list only if it's the current room
+    updateUserList(users);
   }
 });
 
@@ -85,7 +80,6 @@ function switchRoom(room) {
   socket.emit("get users", room);
 }
 
-// Display messages for a specific room
 function displayMessagesForRoom(room) {
   messagesContainer.innerHTML = "";
   currentRooms[room].forEach((message) => {
@@ -119,7 +113,7 @@ function addRoomToSidebar(room) {
   const roomItem = document.createElement("li");
   roomItem.textContent = room;
   roomItem.addEventListener("click", () => {
-    switchRoom(room); // Switch to the clicked room
+    switchRoom(room);
   });
   roomList.appendChild(roomItem);
 }
